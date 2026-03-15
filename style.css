@@ -304,6 +304,24 @@ a {
     }
 }
 
+/* Poster / Hero */
+.hero {
+    padding: var(--spacing-xl) 0;
+}
+
+.poster-img {
+    display: block;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+    .poster-img { max-width: 100%; }
+}
+
 /* Mission List */
 .mission-list {
     list-style: none;
