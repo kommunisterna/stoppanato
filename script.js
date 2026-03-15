@@ -111,9 +111,3 @@ dots.forEach(dot => {
 });
 
 startAutoplay();
-
-// Export functions for external use
-window.addNewsPost = addNewsPost;
-window.getNewsPosts = getNewsPosts;
-window.searchNews = searchNews;
-window.formatDate = formatDate;

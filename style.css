@@ -5,15 +5,6 @@
     box-sizing: border-box;
 }
 
-/* Custom Fonts */
-@font-face {
-    font-family: 'EBGaramond';
-    src: url('fonts/EBGaramond-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
 :root {
     --color-primary: #900019;
     --color-secondary: #b1c5a4;
@@ -25,8 +16,8 @@
     --color-gray: #636363;
 
     --font-body: 'Inter', sans-serif;
-    --font-heading: 'Cardo', serif;
-    --font-title: 'EBGaramond', serif;
+    --font-heading: 'EB Garamond', serif;
+    --font-title: 'EB Garamond', serif;
 
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
