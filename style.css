@@ -84,7 +84,8 @@ a {
     background-color: var(--color-white);
     border-bottom: 1px solid var(--color-border);
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    position: sticky;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 
     .header-container {
@@ -123,6 +124,8 @@ a {
     border: none;
     cursor: pointer;
     padding: var(--spacing-md);
+    z-index: 1001;
+    position: relative;
 
     span {
         width: 24px;
@@ -209,7 +212,7 @@ a {
 
 /* Hero & Slideshow */
 .hero {
-    padding: 0;
+    padding: var(--spacing-lg) 0;
     text-align: center;
     position: relative;
 }
@@ -305,13 +308,9 @@ a {
 }
 
 /* Poster / Hero */
-.hero {
-    padding: var(--spacing-xl) 0;
-}
-
 .poster-img {
     display: block;
-    max-width: 500px;
+    max-width: 350px;
     width: 100%;
     margin: 0 auto;
     border-radius: 4px;
@@ -319,7 +318,39 @@ a {
 }
 
 @media (max-width: 768px) {
-    .poster-img { max-width: 100%; }
+    .poster-img {
+        max-width: 220px;
+    }
+
+    .hero {
+        padding: var(--spacing-md) 0;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: var(--color-white);
+        border-bottom: 1px solid var(--color-border);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 999;
+        flex-direction: column;
+        padding: var(--spacing-md);
+        gap: 0;
+        display: none;
+
+        &.open { display: flex; }
+
+        a {
+            padding: var(--spacing-md);
+            display: block;
+            border-left: none;
+            border-bottom: 1px solid var(--color-border);
+
+            &:last-child { border-bottom: none; }
+        }
+    }
 }
 
 /* Mission List */
@@ -553,10 +584,12 @@ a {
         background-color: var(--color-white);
         gap: 0;
         border-bottom: 1px solid var(--color-border);
+        z-index: 999;
+        padding: var(--spacing-md);
 
-        &.active { display: flex; }
+        &.open { display: flex; }
         li { border-bottom: 1px solid var(--color-border); }
-        a { padding: var(--spacing-lg); display: block; }
+        a { padding: var(--spacing-md); display: block; }
     }
 
     .demo-info,

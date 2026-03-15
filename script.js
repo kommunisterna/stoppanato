@@ -2,21 +2,21 @@
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.getElementById('navMenu');
 
-mobileMenuBtn.addEventListener('click', function() {
-    navMenu.classList.toggle('active');
+mobileMenuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
 });
 
 // Close menu when a link is clicked
 document.querySelectorAll('.nav-menu a').forEach(link => {
     link.addEventListener('click', function() {
-        navMenu.classList.remove('active');
+        navMenu.classList.remove('open');
     });
 });
 
 // Close menu when clicking outside
 document.addEventListener('click', function(event) {
     if (!event.target.closest('.header-nav')) {
-        navMenu.classList.remove('active');
+        navMenu.classList.remove('open');
     }
 });
 
