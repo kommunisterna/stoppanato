@@ -51,33 +51,6 @@ function updateActiveSidebarLink() {
 window.addEventListener('scroll', updateActiveSidebarLink);
 updateActiveSidebarLink();
 
-// Render News Posts
-function renderNews() {
-    const newsGrid = document.getElementById('newsGrid');
-    newsGrid.innerHTML = '';
-
-    newsData.forEach(post => {
-        const newsItem = document.createElement('article');
-        newsItem.className = 'news-item';
-        newsItem.innerHTML = `
-            <div class="news-item-date">
-                ${formatDate(post.date)}
-            </div>
-            <div class="news-item-content">
-                <h4>${post.title}</h4>
-                <p>${post.excerpt}</p>
-                <a href="#" class="news-item-read-more" onclick="scrollToSection('news'); return false;">Läs mer →</a>
-            </div>
-        `;
-        newsGrid.appendChild(newsItem);
-    });
-}
-
-// Initialize news on page load
-document.addEventListener('DOMContentLoaded', function() {
-    renderNews();
-});
-
 // Smooth scroll helper function
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
@@ -101,24 +74,43 @@ const observer = new IntersectionObserver(function(entries) {
     });
 }, observerOptions);
 
-// Observe news items and reason cards for animation
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.news-item, .reason-card').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
+// Slideshow
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+let currentSlide = 0;
+let slideshowTimer;
+
+function goToSlide(index) {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = (index + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() { goToSlide(currentSlide + 1); }
+function prevSlide() { goToSlide(currentSlide - 1); }
+
+function startAutoplay() {
+    slideshowTimer = setInterval(nextSlide, 4000);
+}
+
+function resetAutoplay() {
+    clearInterval(slideshowTimer);
+    startAutoplay();
+}
+
+document.getElementById('slideNext').addEventListener('click', () => { nextSlide(); resetAutoplay(); });
+document.getElementById('slidePrev').addEventListener('click', () => { prevSlide(); resetAutoplay(); });
+
+dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+        goToSlide(parseInt(dot.dataset.index));
+        resetAutoplay();
     });
 });
 
-// Search functionality placeholder
-function searchNews(query) {
-    return newsData.filter(post =>
-        post.title.toLowerCase().includes(query.toLowerCase()) ||
-        post.excerpt.toLowerCase().includes(query.toLowerCase()) ||
-        post.content.toLowerCase().includes(query.toLowerCase())
-    );
-}
+startAutoplay();
 
 // Export functions for external use
 window.addNewsPost = addNewsPost;
