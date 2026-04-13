@@ -20,11 +20,11 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Sidebar Active Link on Scroll
+// Navbar Active Link on Scroll
 const sections = document.querySelectorAll('section');
-const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+const navbarLinks = document.querySelectorAll('#navMenu a');
 
-function updateActiveSidebarLink() {
+function updateActiveNavbarLink() {
     let current = '';
 
     sections.forEach(section => {
@@ -36,20 +36,20 @@ function updateActiveSidebarLink() {
         }
     });
 
-    sidebarLinks.forEach(link => {
+    navbarLinks.forEach(link => {
         link.classList.remove('active');
     });
 
     if (current) {
-        const activeLink = document.querySelector(`.sidebar-nav a[href="#${current}"]`);
+        const activeLink = document.querySelector(`#navMenu a[href="#${current}"]`);
         if (activeLink) {
             activeLink.classList.add('active');
         }
     }
 }
 
-window.addEventListener('scroll', updateActiveSidebarLink);
-updateActiveSidebarLink();
+window.addEventListener('scroll', updateActiveNavbarLink);
+updateActiveNavbarLink();
 
 // Smooth scroll helper function
 function scrollToSection(sectionId) {
@@ -73,4 +73,3 @@ const observer = new IntersectionObserver(function(entries) {
         }
     });
 }, observerOptions);
-
