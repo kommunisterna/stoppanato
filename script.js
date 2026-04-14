@@ -23,15 +23,15 @@ document.addEventListener('click', function(event) {
 // Navbar Active Link on Scroll
 const sections = document.querySelectorAll('section');
 const navbarLinks = document.querySelectorAll('#navMenu a');
+let headerHeight = 0;
 
 function updateActiveNavbarLink() {
     let current = '';
 
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
 
-        if (window.scrollY >= sectionTop - 200) {
+        if (window.scrollY + headerHeight + 10 >= sectionTop) {
             current = section.getAttribute('id');
         }
     });
@@ -48,7 +48,16 @@ function updateActiveNavbarLink() {
     }
 }
 
+function updateHeaderHeight() {
+    // Update --header-height CSS variable based on actual header height
+    const header = document.querySelector('.header-container');
+    headerHeight = header.offsetHeight;
+    document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+}
+
 window.addEventListener('scroll', updateActiveNavbarLink);
+window.addEventListener('scroll', updateHeaderHeight);
+updateHeaderHeight();
 updateActiveNavbarLink();
 
 // Smooth scroll helper function
