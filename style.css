@@ -216,6 +216,17 @@ a {
     position: relative;
 }
 
+.hero-logotypes {
+    display: flex;
+    gap: 6em;
+    align-items: center;
+    padding: 3em 6em;
+}
+
+.hero-logotypes svg {
+    flex: 1;
+}
+
 .slideshow {
     position: relative;
     width: 100%;
@@ -622,6 +633,8 @@ a {
     .cta-buttons { flex-direction: column; }
     h2 { font-size: 1.8rem; }
     .hero h2 { font-size: 2rem; }
+    .hero-logotypes { flex-direction: column; gap: 2em; }
+    .hero-logotypes svg { max-width: 220px; }
 }
 
 @media (max-width: 480px) {
